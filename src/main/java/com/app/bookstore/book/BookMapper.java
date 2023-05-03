@@ -1,5 +1,7 @@
 package com.app.bookstore.book;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,6 +24,10 @@ public class BookMapper {
 		bookGetDTO.setPrice(book.getPrice());
 
 		return bookGetDTO;
+	}
+
+	public List<BookGetDTO> listBook2listGetDTO(List<Book> books) {
+		return books.stream().map(book -> book2BookGetDTO(book)).toList();
 	}
 
 }

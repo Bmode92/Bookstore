@@ -10,6 +10,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "book", schema = "public")
 public class Book {
+	
+	//title, year, isbn
 
 	@Id
 	@Column(name = "id")
