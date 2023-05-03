@@ -3,6 +3,7 @@ package com.app.bookstore.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,16 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users") // mereu se foloseste forma de plural ca standard
 public class UserController {
+
 	@Autowired
 	private UserService userService;
 
 	@Autowired
 	private UserMapper userMapper;
-
-	@GetMapping()
-	public List<UserGetDTO> findAll() {
-		return userService.findAll().stream().map(user -> userMapper.user2UserGetDTO(user)).toList();
-	}
 
 	@PostMapping()
 	public UserGetDTO create(@RequestBody UserCreateDTO userCreateDTO) {
@@ -34,12 +31,27 @@ public class UserController {
 		return userMapper.user2UserGetDTO(createdUser);
 	}
 
+	@GetMapping("/{id}")
+	public User findById(@PathVariable Integer id) {
+		return userService.findById(id);
+	}
+
+	@GetMapping()
+	public List<UserGetDTO> findAll() {
+		return userService.findAll().stream().map(user -> userMapper.user2UserGetDTO(user)).toList();
+	}
+
 	@PutMapping("/{id}")
 	public UserGetDTO update(@RequestBody UserCreateDTO userCreateDTO, @PathVariable Integer id) {
 		User user = userMapper.userCreateDTO2User(userCreateDTO);
 		User updatedUser = userService.update(user, id);
 
 		return userMapper.user2UserGetDTO(updatedUser);
+	}
+
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable Integer id) {
+		userService.delete(id);
 	}
 
 }

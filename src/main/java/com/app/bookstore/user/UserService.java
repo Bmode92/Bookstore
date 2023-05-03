@@ -12,12 +12,16 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public List<User> findAll() {
-		return userRepository.findAll();
-	}
-
 	public User create(User user) {
 		return userRepository.save(user);
+	}
+
+	public User findById(Integer id) {
+		return userRepository.findById(id).orElseThrow();
+	}
+
+	public List<User> findAll() {
+		return userRepository.findAll();
 	}
 
 	public User update(User userToUpdate, Integer userId) {
@@ -28,5 +32,9 @@ public class UserService {
 		existingUser.setEmail(userToUpdate.getEmail());
 
 		return userRepository.save(existingUser);
+	}
+
+	public void delete(Integer userId) {
+		userRepository.deleteById(userId);
 	}
 }
