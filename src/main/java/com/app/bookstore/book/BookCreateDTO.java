@@ -1,17 +1,11 @@
 package com.app.bookstore.book;
 
+import java.time.LocalDate;
+
 public class BookCreateDTO {
-	private String name;
 	private String title;
-	private Integer price;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	private String isbn;
+	private LocalDate year;
 
 	public String getTitle() {
 		return title;
@@ -21,12 +15,20 @@ public class BookCreateDTO {
 		this.title = title;
 	}
 
-	public Integer getPrice() {
-		return price;
+	public String getIsbn() {
+		return isbn;
 	}
 
-	public void setPrice(Integer price) {
-		this.price = price;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public LocalDate getYear() {
+		return year;
+	}
+
+	public void setYear(LocalDate year) {
+		this.year = year;
 	}
 
 }

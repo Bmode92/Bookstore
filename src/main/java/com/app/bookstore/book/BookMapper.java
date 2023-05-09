@@ -9,9 +9,9 @@ public class BookMapper {
 
 	public Book bookCreateDTO2Book(BookCreateDTO bookCreateDTO) {
 		Book book = new Book();
-		book.setName(bookCreateDTO.getName());
-		book.setPrice(bookCreateDTO.getPrice());
 		book.setTitle(bookCreateDTO.getTitle());
+		book.setYear(bookCreateDTO.getYear());
+		book.setIsbn(bookCreateDTO.getIsbn());
 
 		return book;
 	}
@@ -19,9 +19,9 @@ public class BookMapper {
 	public BookGetDTO book2BookGetDTO(Book book) {
 		BookGetDTO bookGetDTO = new BookGetDTO();
 		bookGetDTO.setId(book.getId());
-		bookGetDTO.setName(book.getName());
 		bookGetDTO.setTitle(book.getTitle());
-		bookGetDTO.setPrice(book.getPrice());
+		bookGetDTO.setYear(book.getYear());
+		bookGetDTO.setIsbn(book.getIsbn());
 
 		return bookGetDTO;
 	}

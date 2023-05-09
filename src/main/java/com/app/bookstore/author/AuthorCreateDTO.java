@@ -1,23 +1,12 @@
-package com.app.bookstore.book;
+package com.app.bookstore.author;
 
 import java.time.LocalDate;
 
-import org.springframework.stereotype.Component;
+public class AuthorCreateDTO {
 
-@Component
-public class BookGetDTO {
-	private Integer id;
 	private String title;
 	private String isbn;
 	private LocalDate year;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getTitle() {
 		return title;

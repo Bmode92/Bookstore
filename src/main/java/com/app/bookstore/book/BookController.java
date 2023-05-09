@@ -63,8 +63,8 @@ public class BookController {
 	}
 	
 	@GetMapping("/name")
-	public List<BookGetDTO> findByName(@RequestParam String name) {
-		return bookMapper.listBook2listGetDTO(bookService.findByName(name));
+	public List<BookGetDTO> findByTitle(@RequestParam String title) {
+		return bookMapper.listBook2listGetDTO(bookService.findByTitle(title));
 
 	}
 

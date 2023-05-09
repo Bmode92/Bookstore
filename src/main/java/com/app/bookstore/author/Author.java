@@ -1,4 +1,4 @@
-package com.app.bookstore.book;
+package com.app.bookstore.author;
 
 import java.time.LocalDate;
 
@@ -10,8 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "book", schema = "public")
-public class Book {
+@Table(name = "author", schema = "public")
+public class Author {
 
 	@Id
 	@Column(name = "id")
@@ -27,12 +27,12 @@ public class Book {
 	@Column(name = "isbn")
 	private String isbn;
 
-	public String getIsbn() {
-		return isbn;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public LocalDate getYear() {
@@ -43,6 +43,14 @@ public class Book {
 		this.year = year;
 	}
 
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -50,13 +58,4 @@ public class Book {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 }

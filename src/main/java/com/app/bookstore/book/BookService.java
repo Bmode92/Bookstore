@@ -25,9 +25,9 @@ public class BookService {
 
 	public Book update(Book bookToUpdate, Integer bookId) {
 		Book existingBook = bookRepository.findById(bookId).orElseThrow();
-		existingBook.setName(bookToUpdate.getName());
 		existingBook.setTitle(bookToUpdate.getTitle());
-		existingBook.setPrice(bookToUpdate.getPrice());
+		existingBook.setIsbn(bookToUpdate.getIsbn());
+		existingBook.setYear(bookToUpdate.getYear());
 
 		return bookRepository.save(existingBook);
 	}
@@ -35,9 +35,9 @@ public class BookService {
 	public void delete(Integer bookId) {
 		bookRepository.deleteById(bookId);
 	}
-	
-	public List<Book> findByName(String name){
-		return bookRepository.findByName(name);
+
+	public List<Book> findByTitle(String title) {
+		return bookRepository.findByTitle(title);
 	}
 
 }
