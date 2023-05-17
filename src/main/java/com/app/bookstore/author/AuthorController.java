@@ -68,9 +68,9 @@ public class AuthorController {
 		authorService.delete(id);
 	}
 
-	@GetMapping("/name")
-	public List<AuthorGetDTO> findByTitle(@RequestParam String title) {
-		return authorMapper.listAuthor2listGetDTO(authorService.findByTitle(title));
+	@GetMapping("/name/{name}")
+	public List<AuthorGetDTO> findByName(@RequestParam String name) {
+		return authorMapper.listAuthor2listGetDTO(authorService.findByName(name));
 
 	}
 

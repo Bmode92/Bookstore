@@ -62,7 +62,7 @@ public class BookController {
 		bookService.delete(id);
 	}
 	
-	@GetMapping("/name")
+	@GetMapping("/name/{name}")
 	public List<BookGetDTO> findByTitle(@RequestParam String title) {
 		return bookMapper.listBook2listGetDTO(bookService.findByTitle(title));
 

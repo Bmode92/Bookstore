@@ -18,38 +18,20 @@ public class Author {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "title")
-	private String title;
+	@Column(name = "name")
+	private String name;
 
-	@Column(name = "year")
-	private LocalDate year;
+	@Column(name = "birthDate")
+	private LocalDate birthDate;
 
-	@Column(name = "isbn")
-	private String isbn;
+	@Column(name = "deathDate")
+	private LocalDate deathDate;
 
-	public String getTitle() {
-		return title;
-	}
+	@Column(name = "gender")
+	private String gender;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public LocalDate getYear() {
-		return year;
-	}
-
-	public void setYear(LocalDate year) {
-		this.year = year;
-	}
-
-	public String getIsbn() {
-		return isbn;
-	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
+	@Column(name = "nationality")
+	private String nationality;
 
 	public Integer getId() {
 		return id;
@@ -58,4 +40,45 @@ public class Author {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public LocalDate getDeathDate() {
+		return deathDate;
+	}
+
+	public void setDeathDate(LocalDate localDate) {
+		this.deathDate = localDate;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
 }

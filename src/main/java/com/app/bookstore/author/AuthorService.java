@@ -23,11 +23,13 @@ public class AuthorService {
 		return authorRepository.findAll();
 	}
 
-	public Author update(Author bookToUpdate, Integer authorId) {
+	public Author update(Author authorToUpdate, Integer authorId) {
 		Author existingAuthor = authorRepository.findById(authorId).orElseThrow();
-		existingAuthor.setTitle(bookToUpdate.getTitle());
-		existingAuthor.setIsbn(bookToUpdate.getIsbn());
-		existingAuthor.setYear(bookToUpdate.getYear());
+		existingAuthor.setName(authorToUpdate.getName());
+		existingAuthor.setBirthDate(authorToUpdate.getBirthDate());
+		existingAuthor.setDeathDate(authorToUpdate.getDeathDate());
+		existingAuthor.setGender(authorToUpdate.getGender());
+		existingAuthor.setNationality(authorToUpdate.getNationality());
 
 		return authorRepository.save(existingAuthor);
 	}
@@ -36,8 +38,8 @@ public class AuthorService {
 		authorRepository.deleteById(authorId);
 	}
 
-	public List<Author> findByTitle(String title) {
-		return authorRepository.findByTitle(title);
+	public List<Author> findByName(String name) {
+		return authorRepository.findByName(name);
 	}
 
 }
