@@ -31,13 +31,13 @@ public class BookController {
 		return new ResponseEntity<>(bookMapper.book2BookGetDTO(book), HttpStatus.CREATED);
 	}
 
-	@PostMapping()
-	public BookGetDTO create(@RequestBody BookCreateDTO bookCreateDTO) {
-		Book book = bookMapper.bookCreateDTO2Book(bookCreateDTO);
-		Book createdBook = bookService.create(book);
-
-		return bookMapper.book2BookGetDTO(createdBook);
-	}
+//	@PostMapping()
+//	public BookGetDTO create(@RequestBody BookCreateDTO bookCreateDTO) {
+//		Book book = bookMapper.bookCreateDTO2Book(bookCreateDTO);
+//		Book createdBook = bookService.create(book);
+//
+//		return bookMapper.book2BookGetDTO(createdBook);
+//	}
 
 	@GetMapping("/{id}")
 	public Book findById(@PathVariable Integer id) {
@@ -63,7 +63,7 @@ public class BookController {
 	}
 	
 	@GetMapping("/name/{name}")
-	public List<BookGetDTO> findByTitle(@RequestParam String title) {
+	public List<BookGetDTO> findByTitle(@PathVariable String title) {
 		return bookMapper.listBook2listGetDTO(bookService.findByTitle(title));
 
 	}

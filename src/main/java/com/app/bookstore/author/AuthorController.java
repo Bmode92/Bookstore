@@ -15,12 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.bookstore.book.Book;
-import com.app.bookstore.book.BookCreateDTO;
-import com.app.bookstore.book.BookGetDTO;
-import com.app.bookstore.book.BookMapper;
-import com.app.bookstore.book.BookService;
-
 @RestController
 @RequestMapping("/authors")
 public class AuthorController {
@@ -37,13 +31,13 @@ public class AuthorController {
 		return new ResponseEntity<>(authorMapper.author2authorGetDTO(author), HttpStatus.CREATED);
 	}
 
-	@PostMapping()
-	public AuthorGetDTO create(@RequestBody AuthorCreateDTO authorCreateDTO) {
-		Author author = authorMapper.authorCreateDTO2Author(authorCreateDTO);
-		Author createdAuthor = authorService.create(author);
-
-		return authorMapper.author2authorGetDTO(createdAuthor);
-	}
+//	@PostMapping()
+//	public AuthorGetDTO create(@RequestBody AuthorCreateDTO authorCreateDTO) {
+//		Author author = authorMapper.authorCreateDTO2Author(authorCreateDTO);
+//		Author createdAuthor = authorService.create(author);
+//
+//		return authorMapper.author2authorGetDTO(createdAuthor);
+//	}
 
 	@GetMapping("/{id}")
 	public Author findById(@PathVariable Integer id) {
@@ -69,7 +63,7 @@ public class AuthorController {
 	}
 
 	@GetMapping("/name/{name}")
-	public List<AuthorGetDTO> findByName(@RequestParam String name) {
+	public List<AuthorGetDTO> findByName(@PathVariable String name) {
 		return authorMapper.listAuthor2listGetDTO(authorService.findByName(name));
 
 	}
