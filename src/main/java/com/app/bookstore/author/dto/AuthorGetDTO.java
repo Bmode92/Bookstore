@@ -1,4 +1,4 @@
-package com.app.bookstore.author;
+package com.app.bookstore.author.dto;
 
 import java.time.LocalDate;
 

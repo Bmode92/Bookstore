@@ -1,12 +1,18 @@
 package com.app.bookstore.book;
 
 import java.time.LocalDate;
+import java.util.Set;
 
+import com.app.bookstore.exemplary.Exemplary;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +32,15 @@ public class Book {
 
 	@Column(name = "isbn")
 	private String isbn;
+
+	// lazy - daca incarc parintele, nu imi aduce si copiii la incarcarea parintelui
+	// eager - daca incarca parintele, imi aduce si copiii (join) la incarcarea
+	// parintelui
+	// de la parinte la copil: lazy
+	// de la copil la parinte: eager
+	@OneToMany(mappedBy = "book", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
+	private Set<Exemplary> exemplaries;
 
 	public String getIsbn() {
 		return isbn;
@@ -57,6 +72,24 @@ public class Book {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Set<Exemplary> getExemplaries() {
+		return exemplaries;
+	}
+
+	public void setExemplaries(Set<Exemplary> exemplaries) {
+		this.exemplaries = exemplaries;
+	}
+
+	public void addExemplary(Exemplary exemplary) {
+		this.exemplaries.add(exemplary);
+		exemplary.setBook(this);
+	}
+
+	public void removeExemplary(Exemplary exemplary) {
+		this.exemplaries.remove(exemplary);
+		exemplary.setBook(null);
 	}
 
 }

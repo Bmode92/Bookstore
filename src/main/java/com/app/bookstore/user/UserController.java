@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.bookstore.user.dto.UserCreateDTO;
+import com.app.bookstore.user.dto.UserGetDTO;
+import com.app.bookstore.user.mapper.UserMapper;
+
 //nivelul de comunicare cu clientul/aplicatia de pe front-end
 @RestController
 @RequestMapping("/users") // mereu se foloseste forma de plural ca standard

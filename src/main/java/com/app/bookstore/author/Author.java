@@ -21,10 +21,10 @@ public class Author {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "birthDate")
+	@Column(name = "birth_date")
 	private LocalDate birthDate;
 
-	@Column(name = "deathDate")
+	@Column(name = "death_date")
 	private LocalDate deathDate;
 
 	@Column(name = "gender")

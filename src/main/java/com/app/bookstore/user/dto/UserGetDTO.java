@@ -1,4 +1,4 @@
-package com.app.bookstore.user;
+package com.app.bookstore.user.dto;
 
 import org.springframework.stereotype.Component;
 

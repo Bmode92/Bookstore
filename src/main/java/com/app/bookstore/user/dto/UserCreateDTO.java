@@ -1,4 +1,4 @@
-package com.app.bookstore.user;
+package com.app.bookstore.user.dto;
 
 public class UserCreateDTO {
 	private String firstName;

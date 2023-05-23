@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.bookstore.author.dto.AuthorCreateDTO;
+import com.app.bookstore.author.dto.AuthorGetDTO;
+import com.app.bookstore.author.mapper.AuthorMapper;
+
 @RestController
 @RequestMapping("/authors")
 public class AuthorController {
@@ -40,13 +44,19 @@ public class AuthorController {
 //	}
 
 	@GetMapping("/{id}")
-	public Author findById(@PathVariable Integer id) {
-		return authorService.findById(id);
+	public AuthorGetDTO findById(@PathVariable Integer id) {
+		Author author = authorService.findById(id);
+		return authorMapper.author2authorGetDTO(author);
 	}
 
 	@GetMapping()
 	public List<AuthorGetDTO> findAll() {
 		return authorService.findAll().stream().map(author -> authorMapper.author2authorGetDTO(author)).toList();
+	}
+
+	@GetMapping("/name/{name}")
+	public List<AuthorGetDTO> findByName(@PathVariable String name) {
+		return authorMapper.listAuthor2listGetDTO(authorService.findByName(name));
 	}
 
 	@PutMapping("/{id}")
@@ -60,12 +70,6 @@ public class AuthorController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		authorService.delete(id);
-	}
-
-	@GetMapping("/name/{name}")
-	public List<AuthorGetDTO> findByName(@PathVariable String name) {
-		return authorMapper.listAuthor2listGetDTO(authorService.findByName(name));
-
 	}
 
 }

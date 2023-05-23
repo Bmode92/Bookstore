@@ -1,4 +1,4 @@
-package com.app.bookstore.exemplary;
+package com.app.bookstore.exemplary.dto;
 
 import java.time.LocalDate;
 

@@ -19,6 +19,10 @@ public class BookService {
 		return bookRepository.findById(id).orElseThrow();
 	}
 
+	public List<Book> findByTitle(String title) {
+		return bookRepository.findByTitle(title);
+	}
+
 	public List<Book> findAll() {
 		return bookRepository.findAll();
 	}
@@ -34,10 +38,6 @@ public class BookService {
 
 	public void delete(Integer bookId) {
 		bookRepository.deleteById(bookId);
-	}
-
-	public List<Book> findByTitle(String title) {
-		return bookRepository.findByTitle(title);
 	}
 
 }

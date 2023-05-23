@@ -1,8 +1,12 @@
-package com.app.bookstore.exemplary;
+package com.app.bookstore.exemplary.mapper;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.app.bookstore.exemplary.Exemplary;
+import com.app.bookstore.exemplary.dto.ExemplaryCreateDTO;
+import com.app.bookstore.exemplary.dto.ExemplaryGetDTO;
 
 @Component
 public class ExemplaryMapper {

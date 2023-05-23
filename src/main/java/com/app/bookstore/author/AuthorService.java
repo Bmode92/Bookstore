@@ -23,6 +23,10 @@ public class AuthorService {
 		return authorRepository.findAll();
 	}
 
+	public List<Author> findByName(String name) {
+		return authorRepository.findByName(name);
+	}
+
 	public Author update(Author authorToUpdate, Integer authorId) {
 		Author existingAuthor = authorRepository.findById(authorId).orElseThrow();
 		existingAuthor.setName(authorToUpdate.getName());
@@ -36,10 +40,6 @@ public class AuthorService {
 
 	public void delete(Integer authorId) {
 		authorRepository.deleteById(authorId);
-	}
-
-	public List<Author> findByName(String name) {
-		return authorRepository.findByName(name);
 	}
 
 }

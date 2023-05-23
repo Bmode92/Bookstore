@@ -1,8 +1,12 @@
-package com.app.bookstore.author;
+package com.app.bookstore.author.mapper;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.app.bookstore.author.Author;
+import com.app.bookstore.author.dto.AuthorCreateDTO;
+import com.app.bookstore.author.dto.AuthorGetDTO;
 
 @Component
 public class AuthorMapper {

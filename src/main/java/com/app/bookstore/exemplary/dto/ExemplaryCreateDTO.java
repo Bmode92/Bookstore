@@ -1,4 +1,4 @@
-package com.app.bookstore.exemplary;
+package com.app.bookstore.exemplary.dto;
 
 import java.time.LocalDate;
 
@@ -6,6 +6,15 @@ public class ExemplaryCreateDTO {
 	private LocalDate date;
 	private String code;
 	private Integer pageNumbers;
+	private Integer bookId;
+
+	public Integer getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
+	}
 
 	public LocalDate getDate() {
 		return date;

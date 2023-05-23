@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.bookstore.book.dto.BookCreateDTO;
+import com.app.bookstore.book.dto.BookGetDTO;
+import com.app.bookstore.book.dto.BookWithExemplariesDTO;
+import com.app.bookstore.book.mapper.BookMapper;
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -40,13 +45,27 @@ public class BookController {
 //	}
 
 	@GetMapping("/{id}")
-	public Book findById(@PathVariable Integer id) {
-		return bookService.findById(id);
+	public BookGetDTO findById(@PathVariable Integer id) {
+		Book book = bookService.findById(id);
+		return bookMapper.book2BookGetDTO(book);
 	}
 
 	@GetMapping()
 	public List<BookGetDTO> findAll() {
 		return bookService.findAll().stream().map(book -> bookMapper.book2BookGetDTO(book)).toList();
+	}
+
+	@GetMapping("/name/{name}")
+	public List<BookGetDTO> findByTitle(@PathVariable String title) {
+		return bookMapper.listBook2listGetDTO(bookService.findByTitle(title));
+
+	}
+
+	// duce la n+1 select problem (1 query pentru parinte, n query-uri pentru
+	// fiecare parinte (n = numarul de parinti))
+	@GetMapping("/list-with-exemplaries")
+	public List<BookWithExemplariesDTO> findAllWithExemplaries() {
+		return bookMapper.bookList2BooksWithExemplariesDTO(bookService.findAll());
 	}
 
 	@PutMapping("/{id}")
@@ -60,12 +79,6 @@ public class BookController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		bookService.delete(id);
-	}
-	
-	@GetMapping("/name/{name}")
-	public List<BookGetDTO> findByTitle(@PathVariable String title) {
-		return bookMapper.listBook2listGetDTO(bookService.findByTitle(title));
-
 	}
 
 }

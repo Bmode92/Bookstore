@@ -5,14 +5,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.bookstore.book.Book;
+import com.app.bookstore.book.BookRepository;
+
 @Service
 public class ExemplaryService {
 
 	@Autowired
 	private ExemplaryRepository exemplaryRepository;
 
-	public Exemplary create(Exemplary exemplary) {
-		return exemplaryRepository.save(exemplary);
+	@Autowired
+	private BookRepository bookRepository;
+
+	public Exemplary create(Exemplary exemplary, Integer bookId) {
+		Book book = bookRepository.findById(bookId).orElseThrow();
+		book.addExemplary(exemplary);
+
+		return exemplaryRepository.saveAndFlush(exemplary);
 	}
 
 	public Exemplary findById(Integer id) {
@@ -37,6 +46,13 @@ public class ExemplaryService {
 	}
 
 	public void delete(Integer exemplaryId) {
+		/*
+		 * caz: orphan removal Exemplary exemplary =
+		 * exemplaryRepository.findById(id).orElseThrow(); Book book =
+		 * bookRepository.findById(3).orElseThrow(); book.removeExemplary(exemplary);
+		 * bookRepository.flush();
+		 */
+
 		exemplaryRepository.deleteById(exemplaryId);
 	}
 }

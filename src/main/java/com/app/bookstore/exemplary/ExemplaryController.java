@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.bookstore.exemplary.dto.ExemplaryCreateDTO;
+import com.app.bookstore.exemplary.dto.ExemplaryGetDTO;
+import com.app.bookstore.exemplary.mapper.ExemplaryMapper;
+
 @RestController
 @RequestMapping("/exemplaries")
 public class ExemplaryController {
@@ -27,7 +31,8 @@ public class ExemplaryController {
 
 	@PostMapping
 	public ResponseEntity<ExemplaryGetDTO> createWithStatus(@RequestBody ExemplaryCreateDTO exemplaryCreateDTO) {
-		Exemplary exemplary = exemplaryService.create(exemplaryMapper.exemplaryCreateDTO2Exemplary(exemplaryCreateDTO));
+		Exemplary exemplary = exemplaryService.create(exemplaryMapper.exemplaryCreateDTO2Exemplary(exemplaryCreateDTO),
+				exemplaryCreateDTO.getBookId());
 		return new ResponseEntity<>(exemplaryMapper.exemplary2emplaryGetDTO(exemplary), HttpStatus.CREATED);
 	}
 
@@ -50,6 +55,12 @@ public class ExemplaryController {
 				.toList();
 	}
 
+	@GetMapping("code/{code}")
+	public List<ExemplaryGetDTO> findByCode(@PathVariable String code) {
+		return exemplaryMapper.listExemplary2listGetDTO(exemplaryService.findByCode(code));
+
+	}
+
 	@PutMapping("/{id}")
 	public ExemplaryGetDTO update(@RequestBody ExemplaryCreateDTO exemplaryCreateDTO, @PathVariable Integer id) {
 		Exemplary exemplary = exemplaryMapper.exemplaryCreateDTO2Exemplary(exemplaryCreateDTO);
@@ -61,12 +72,6 @@ public class ExemplaryController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		exemplaryService.delete(id);
-	}
-
-	@GetMapping("code/{code}")
-	public List<ExemplaryGetDTO> findByCode(@PathVariable String code) {
-		return exemplaryMapper.listExemplary2listGetDTO(exemplaryService.findByCode(code));
-
 	}
 
 }
