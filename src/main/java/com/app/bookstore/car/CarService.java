@@ -5,14 +5,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.bookstore.book.Book;
+import com.app.bookstore.person.Person;
+import com.app.bookstore.person.PersonRepository;
+
 @Service
 public class CarService {
 
 	@Autowired
 	private CarRepository carRepository;
 
+	@Autowired
+	private PersonRepository personRepository;
+
 	public Car create(Car car) {
 		return carRepository.save(car);
+	}
+
+	public Car createWithPersonId(Car car, Integer personId) {
+		Person person = personRepository.findById(personId).orElseThrow();
+		person.addCar(car);
+
+		return carRepository.saveAndFlush(car);
 	}
 
 	public Car findById(Integer id) {

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.bookstore.person.dto.PersonCreateDTO;
 import com.app.bookstore.person.dto.PersonGetDTO;
+import com.app.bookstore.person.dto.PersonWithCarsDTO;
 import com.app.bookstore.person.mapper.PersonMapper;
 
 @RestController
@@ -44,6 +45,17 @@ public class PersonController {
 	public List<PersonGetDTO> findAll() {
 		return personMapper.listPerson2listGetDTO(personService.findAll());
 //		return personService.findAll().stream().map(person -> personMapper.person2personGetDTO(person)).toList();
+	}
+	
+	@GetMapping("/car/{id}")
+	public PersonWithCarsDTO findByIdWithCar(@PathVariable Integer id) {
+		Person person = personService.findById(id);
+		return personMapper.person2PersonWithCarsDTO(person);
+	}
+	
+	@GetMapping("/person-with-cars")
+	public List<PersonWithCarsDTO> findAllWithCars() {
+		return personMapper.personList2PersonWithCarsDTO(personService.findAll());
 	}
 
 	@DeleteMapping("/{id}")

@@ -76,4 +76,14 @@ public class Person {
 		this.varsta = varsta;
 	}
 
+	public void addCar(Car car) {
+		this.cars.add(car);
+		car.setPerson(this);
+	}
+
+	public void removeCar(Car car) {
+		this.cars.remove(car);
+		car.setPerson(null);
+	}
+
 }

@@ -39,6 +39,14 @@ public class CarController {
 		Car car = carService.create(carMapper.carCreateDTO2Car(carCreateDTO));
 		return new ResponseEntity<>(carMapper.car2carGetDTO(car), HttpStatus.CREATED);
 	}
+	
+	@PostMapping("/{id}")
+	public CarGetDTO creatCarWithPersonID(@RequestBody CarCreateDTO carCreateDTO, @PathVariable Integer id) {
+		Car car = carMapper.carCreateDTO2Car(carCreateDTO);
+		Car updatedCar = carService.createWithPersonId(car, id);
+
+		return carMapper.car2carGetDTO(updatedCar);
+	}
 
 	@GetMapping("/{id}")
 	public CarGetDTO findById(@PathVariable Integer id) {
