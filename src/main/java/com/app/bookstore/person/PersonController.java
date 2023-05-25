@@ -1,4 +1,4 @@
-package Tema.person;
+package com.app.bookstore.person;
 
 import java.util.List;
 
@@ -14,14 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Tema.car.Car;
-import Tema.car.CarService;
-import Tema.car.dto.CarCreateDTO;
-import Tema.car.dto.CarGetDTO;
-import Tema.car.mapper.CarMapper;
-import Tema.person.dto.PersonCreateDTO;
-import Tema.person.dto.PersonGetDTO;
-import Tema.person.mapper.PersonMapper;
+import com.app.bookstore.person.dto.PersonCreateDTO;
+import com.app.bookstore.person.dto.PersonGetDTO;
+import com.app.bookstore.person.mapper.PersonMapper;
 
 @RestController
 @RequestMapping("/persons")
@@ -45,17 +40,10 @@ public class PersonController {
 		return personMapper.person2personGetDTO(person);
 	}
 
-	@GetMapping()
+	@GetMapping("/list")
 	public List<PersonGetDTO> findAll() {
-		return personService.findAll().stream().map(person -> personMapper.person2personGetDTO(person)).toList();
-	}
-
-	@PutMapping("/{id}")
-	public PersonGetDTO update(@RequestBody PersonCreateDTO personCreateDTO, @PathVariable Integer id) {
-		Person person = personMapper.personCreateDTO2Person(personCreateDTO);
-		Person updatedPerson = personService.update(person, id);
-
-		return personMapper.person2personGetDTO(updatedPerson);
+		return personMapper.listPerson2listGetDTO(personService.findAll());
+//		return personService.findAll().stream().map(person -> personMapper.person2personGetDTO(person)).toList();
 	}
 
 	@DeleteMapping("/{id}")

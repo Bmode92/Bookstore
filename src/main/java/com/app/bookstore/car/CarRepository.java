@@ -1,4 +1,4 @@
-package Tema.car;
+package com.app.bookstore.car;
 
 import java.util.List;
 

@@ -1,10 +1,17 @@
-package Tema.person;
+package com.app.bookstore.person;
 
+import java.util.Set;
+
+import com.app.bookstore.car.Car;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +31,18 @@ public class Person {
 
 	@Column(name = "varsta")
 	private Integer varsta;
+
+	@OneToMany(mappedBy = "person", cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE,
+			CascadeType.PERSIST }, fetch = FetchType.LAZY, orphanRemoval = true)
+	private Set<Car> cars;
+
+	public Set<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(Set<Car> cars) {
+		this.cars = cars;
+	}
 
 	public Integer getId() {
 		return id;

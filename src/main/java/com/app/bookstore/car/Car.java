@@ -1,12 +1,17 @@
-package Tema.car;
+package com.app.bookstore.car;
 
 import java.time.LocalDate;
 
+import com.app.bookstore.person.Person;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,6 +34,18 @@ public class Car {
 
 	@Column(name = "cai_putere")
 	private Integer caiPutere;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "person_id")
+	private Person person;
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 
 	public Integer getId() {
 		return id;

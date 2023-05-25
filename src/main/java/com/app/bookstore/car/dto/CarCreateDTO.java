@@ -1,4 +1,4 @@
-package Tema.car.dto;
+package com.app.bookstore.car.dto;
 
 import java.time.LocalDate;
 

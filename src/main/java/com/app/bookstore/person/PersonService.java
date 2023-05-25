@@ -1,4 +1,4 @@
-package Tema.person;
+package com.app.bookstore.person;
 
 import java.util.List;
 

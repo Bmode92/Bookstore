@@ -1,12 +1,12 @@
-package Tema.person.mapper;
+package com.app.bookstore.person.mapper;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import Tema.person.Person;
-import Tema.person.dto.PersonCreateDTO;
-import Tema.person.dto.PersonGetDTO;
+import com.app.bookstore.person.Person;
+import com.app.bookstore.person.dto.PersonCreateDTO;
+import com.app.bookstore.person.dto.PersonGetDTO;
 
 @Component
 public class PersonMapper {
@@ -33,5 +33,5 @@ public class PersonMapper {
 	public List<PersonGetDTO> listPerson2listGetDTO(List<Person> persons) {
 		return persons.stream().map(person -> person2personGetDTO(person)).toList();
 	}
-
+	
 }

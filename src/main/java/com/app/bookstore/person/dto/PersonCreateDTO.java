@@ -1,4 +1,4 @@
-package Tema.person.dto;
+package com.app.bookstore.person.dto;
 
 public class PersonCreateDTO {
 

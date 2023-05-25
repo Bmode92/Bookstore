@@ -1,12 +1,12 @@
-package Tema.car.mapper;
+package com.app.bookstore.car.mapper;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import Tema.car.Car;
-import Tema.car.dto.CarCreateDTO;
-import Tema.car.dto.CarGetDTO;
+import com.app.bookstore.car.Car;
+import com.app.bookstore.car.dto.CarCreateDTO;
+import com.app.bookstore.car.dto.CarGetDTO;
 
 @Component
 public class CarMapper {

@@ -1,4 +1,4 @@
-package Tema.car;
+package com.app.bookstore.car;
 
 import java.util.List;
 
@@ -20,10 +20,9 @@ import com.app.bookstore.book.dto.BookCreateDTO;
 import com.app.bookstore.book.dto.BookGetDTO;
 import com.app.bookstore.book.dto.BookWithExemplariesDTO;
 import com.app.bookstore.book.mapper.BookMapper;
-
-import Tema.car.dto.CarCreateDTO;
-import Tema.car.dto.CarGetDTO;
-import Tema.car.mapper.CarMapper;
+import com.app.bookstore.car.dto.CarCreateDTO;
+import com.app.bookstore.car.dto.CarGetDTO;
+import com.app.bookstore.car.mapper.CarMapper;
 
 @RestController
 @RequestMapping("/cars")
@@ -47,7 +46,7 @@ public class CarController {
 		return carMapper.car2carGetDTO(car);
 	}
 
-	@GetMapping()
+	@GetMapping("/list")
 	public List<CarGetDTO> findAll() {
 		return carService.findAll().stream().map(car -> carMapper.car2carGetDTO(car)).toList();
 	}
