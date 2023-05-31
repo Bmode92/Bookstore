@@ -14,12 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.bookstore.book.Book;
-import com.app.bookstore.book.BookService;
-import com.app.bookstore.book.dto.BookCreateDTO;
-import com.app.bookstore.book.dto.BookGetDTO;
-import com.app.bookstore.book.dto.BookWithExemplariesDTO;
-import com.app.bookstore.book.mapper.BookMapper;
 import com.app.bookstore.car.dto.CarCreateDTO;
 import com.app.bookstore.car.dto.CarGetDTO;
 import com.app.bookstore.car.mapper.CarMapper;

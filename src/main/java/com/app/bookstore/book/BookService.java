@@ -1,9 +1,15 @@
 package com.app.bookstore.book;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.app.bookstore.author.Author;
+import com.app.bookstore.author.AuthorRepository;
 
 @Service
 public class BookService {
@@ -11,7 +17,16 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 
-	public Book create(Book book) {
+	@Autowired
+	private AuthorRepository authorRepository;
+
+	public Book create(Book book, List<Integer> authorsID) {
+		List<Author> authors = authorRepository.findAllById(authorsID);
+		Set<Author> authorsSet = new HashSet<>(authors);
+		
+		authors.stream().forEach(author -> author.addBook(book));
+		book.setAuthors(authorsSet);
+		
 		return bookRepository.save(book);
 	}
 

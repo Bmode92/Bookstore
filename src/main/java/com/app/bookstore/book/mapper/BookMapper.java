@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.app.bookstore.author.dto.AuthorGetDTO;
+import com.app.bookstore.author.mapper.AuthorMapper;
 import com.app.bookstore.book.Book;
 import com.app.bookstore.book.dto.BookCreateDTO;
 import com.app.bookstore.book.dto.BookGetDTO;
@@ -16,13 +18,16 @@ public class BookMapper {
 
 	@Autowired
 	private ExemplaryMapper exemplaryMapper;
+	
+	@Autowired
+	private AuthorMapper authorMapper;
 
 	public Book bookCreateDTO2Book(BookCreateDTO bookCreateDTO) {
 		Book book = new Book();
 		book.setTitle(bookCreateDTO.getTitle());
 		book.setYear(bookCreateDTO.getYear());
 		book.setIsbn(bookCreateDTO.getIsbn());
-
+		
 		return book;
 	}
 
@@ -32,7 +37,9 @@ public class BookMapper {
 		bookGetDTO.setTitle(book.getTitle());
 		bookGetDTO.setYear(book.getYear());
 		bookGetDTO.setIsbn(book.getIsbn());
-
+		List<AuthorGetDTO> authors = book.getAuthors().stream().map(author -> authorMapper.author2authorGetDTO(author)).toList();
+		bookGetDTO.setAuthors(authors);
+		
 		return bookGetDTO;
 	}
 

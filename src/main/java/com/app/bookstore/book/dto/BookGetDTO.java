@@ -1,15 +1,20 @@
 package com.app.bookstore.book.dto;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
-@Component
+import com.app.bookstore.author.Author;
+import com.app.bookstore.author.dto.AuthorGetDTO;
+
 public class BookGetDTO {
 	private Integer id;
 	private String title;
 	private String isbn;
 	private LocalDate year;
+	private List<AuthorGetDTO> authors;
 
 	public Integer getId() {
 		return id;
@@ -41,6 +46,14 @@ public class BookGetDTO {
 
 	public void setYear(LocalDate year) {
 		this.year = year;
+	}
+
+	public List<AuthorGetDTO> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(List<AuthorGetDTO> authors) {
+		this.authors = authors;
 	}
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.bookstore.book.Book;
 import com.app.bookstore.person.Person;
 import com.app.bookstore.person.PersonRepository;
 

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.bookstore.book.dto.BookCreateDTO;
@@ -32,7 +31,7 @@ public class BookController {
 
 	@PostMapping
 	public ResponseEntity<BookGetDTO> createWithStatus(@RequestBody BookCreateDTO bookCreateDTO) {
-		Book book = bookService.create(bookMapper.bookCreateDTO2Book(bookCreateDTO));
+		Book book = bookService.create(bookMapper.bookCreateDTO2Book(bookCreateDTO), bookCreateDTO.getAuthorsIds());
 		return new ResponseEntity<>(bookMapper.book2BookGetDTO(book), HttpStatus.CREATED);
 	}
 
