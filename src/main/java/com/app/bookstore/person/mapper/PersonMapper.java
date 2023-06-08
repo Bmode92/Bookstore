@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.app.bookstore.book.Book;
-import com.app.bookstore.book.dto.BookWithExemplariesDTO;
 import com.app.bookstore.car.mapper.CarMapper;
 import com.app.bookstore.person.Person;
 import com.app.bookstore.person.dto.PersonCreateDTO;

@@ -2,9 +2,7 @@ package com.app.bookstore.book.dto;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
-import com.app.bookstore.author.Author;
 import com.app.bookstore.exemplary.dto.ExemplaryGetDTO;
 
 public class BookWithExemplariesDTO {

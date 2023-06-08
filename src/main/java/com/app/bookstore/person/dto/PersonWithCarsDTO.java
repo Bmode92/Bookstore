@@ -2,7 +2,6 @@ package com.app.bookstore.person.dto;
 
 import java.util.List;
 
-import com.app.bookstore.car.Car;
 import com.app.bookstore.car.dto.CarGetDTO;
 
 public class PersonWithCarsDTO {

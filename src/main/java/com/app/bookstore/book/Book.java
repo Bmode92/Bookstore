@@ -1,11 +1,9 @@
 package com.app.bookstore.book;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 import com.app.bookstore.author.Author;
-import com.app.bookstore.author.dto.AuthorGetDTO;
 import com.app.bookstore.exemplary.Exemplary;
 
 import jakarta.persistence.CascadeType;
@@ -15,8 +13,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
