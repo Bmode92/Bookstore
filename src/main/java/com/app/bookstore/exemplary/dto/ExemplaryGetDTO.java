@@ -11,6 +11,7 @@ public class ExemplaryGetDTO {
 	private LocalDate date;
 	private String code;
 	private Integer pageNumbers;
+	private Integer bookId;
 
 	public Integer getId() {
 		return id;
@@ -42,6 +43,14 @@ public class ExemplaryGetDTO {
 
 	public void setPageNumbers(Integer pageNumbers) {
 		this.pageNumbers = pageNumbers;
+	}
+
+	public Integer getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
 	}
 
 }

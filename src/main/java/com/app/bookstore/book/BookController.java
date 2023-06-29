@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.app.bookstore.book.dto.BookCreateDTO;
 import com.app.bookstore.book.dto.BookGetDTO;
 import com.app.bookstore.book.dto.BookWithExemplariesDTO;
 import com.app.bookstore.book.mapper.BookMapper;
+import com.app.bookstore.exception.ValidationOrder;
 
 @RestController
 @RequestMapping("/books")
@@ -30,23 +32,20 @@ public class BookController {
 	private BookMapper bookMapper;
 
 	@PostMapping
-	public ResponseEntity<BookGetDTO> createWithStatus(@RequestBody BookCreateDTO bookCreateDTO) {
+	public ResponseEntity<BookGetDTO> createWithStatus(@Validated(value = ValidationOrder.class) @RequestBody BookCreateDTO bookCreateDTO) {
 		Book book = bookService.create(bookMapper.bookCreateDTO2Book(bookCreateDTO), bookCreateDTO.getAuthorsIds());
 		return new ResponseEntity<>(bookMapper.book2BookGetDTO(book), HttpStatus.CREATED);
 	}
-
-//	@PostMapping()
-//	public BookGetDTO create(@RequestBody BookCreateDTO bookCreateDTO) {
-//		Book book = bookMapper.bookCreateDTO2Book(bookCreateDTO);
-//		Book createdBook = bookService.create(book);
-//
-//		return bookMapper.book2BookGetDTO(createdBook);
-//	}
 
 	@GetMapping("/{id}")
 	public BookGetDTO findById(@PathVariable Integer id) {
 		Book book = bookService.findById(id);
 		return bookMapper.book2BookGetDTO(book);
+	}
+	
+	@GetMapping("/list/{pageSize}/{pageNumber}")
+	public List<BookGetDTO> findAllByPage(@PathVariable Integer pageNumber, @PathVariable Integer pageSize) {
+		return bookMapper.listBook2listGetDTO(bookService.findAllByPage(pageNumber, pageSize));
 	}
 
 	@GetMapping()

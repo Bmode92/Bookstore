@@ -34,14 +34,6 @@ public class AuthorController {
 		return new ResponseEntity<>(authorMapper.author2authorGetDTO(author), HttpStatus.CREATED);
 	}
 
-//	@PostMapping()
-//	public AuthorGetDTO create(@RequestBody AuthorCreateDTO authorCreateDTO) {
-//		Author author = authorMapper.authorCreateDTO2Author(authorCreateDTO);
-//		Author createdAuthor = authorService.create(author);
-//
-//		return authorMapper.author2authorGetDTO(createdAuthor);
-//	}
-
 	@GetMapping("/{id}")
 	public AuthorGetDTO findById(@PathVariable Integer id) {
 		Author author = authorService.findById(id);

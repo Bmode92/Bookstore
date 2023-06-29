@@ -1,6 +1,7 @@
 package com.app.bookstore.book;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import com.app.bookstore.author.Author;
@@ -19,7 +20,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-@Entity
+@Entity(name = "book")
 @Table(name = "book", schema = "public")
 public class Book {
 
@@ -48,7 +49,7 @@ public class Book {
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_id", nullable = false), inverseJoinColumns = @JoinColumn(name = "author_id", nullable = false))
-	private Set<Author> authors;
+	private Set<Author> authors = new HashSet<>();
 
 	public Set<Author> getAuthors() {
 		return authors;

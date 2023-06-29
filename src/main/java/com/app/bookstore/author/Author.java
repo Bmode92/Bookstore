@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
-@Entity
+@Entity(name = "author")
 @Table(name = "author", schema = "public")
 public class Author {
 
@@ -99,6 +99,11 @@ public class Author {
 	public void addBook(Book book) {
 		books.add(book);
 		book.getAuthors().add(this);
+	}
+	
+	public void removeBook(Book book) {
+		this.books.remove(book);
+		book.getAuthors().remove(this);
 	}
 
 }

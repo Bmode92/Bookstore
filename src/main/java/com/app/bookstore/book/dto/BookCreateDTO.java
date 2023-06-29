@@ -3,9 +3,20 @@ package com.app.bookstore.book.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.lang.NonNull;
+
+import com.app.bookstore.exception.AdvanceInfo;
+import com.app.bookstore.exception.BasicInfo;
+import com.app.bookstore.exception.ValidYear;
+
+import jakarta.validation.constraints.NotNull;
+
 public class BookCreateDTO {
+	@NotNull(groups = BasicInfo.class)
 	private String title;
 	private String isbn;
+	@NotNull(groups = BasicInfo.class)
+	@ValidYear(groups = AdvanceInfo.class)
 	private LocalDate year;
 	private List<Integer> authorsIds;
 

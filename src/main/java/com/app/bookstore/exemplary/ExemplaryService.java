@@ -23,6 +23,10 @@ public class ExemplaryService {
 
 		return exemplaryRepository.saveAndFlush(exemplary);
 	}
+	
+	public List<Exemplary> findExemplariesByBookId(Integer bookId) {
+		return exemplaryRepository.findExemplariesByBookId(bookId);
+	}
 
 	public Exemplary findById(Integer id) {
 		return exemplaryRepository.findById(id).orElseThrow();

@@ -34,14 +34,11 @@ public class ExemplaryController {
 				exemplaryCreateDTO.getBookId());
 		return new ResponseEntity<>(exemplaryMapper.exemplary2emplaryGetDTO(exemplary), HttpStatus.CREATED);
 	}
-
-//	@PostMapping()
-//	public ExemplaryGetDTO create(@RequestBody ExemplaryCreateDTO exemplaryCreateDTO) {
-//		Exemplary exemplary = exemplaryMapper.exemplaryCreateDTO2Exemplary(exemplaryCreateDTO);
-//		Exemplary createdExemplary = exemplaryService.create(exemplary);
-//
-//		return exemplaryMapper.exemplary2emplaryGetDTO(createdExemplary);
-//	}
+	
+	@GetMapping("book_id/{bookId}")
+	public List<ExemplaryGetDTO> findExemplariesByBookId(@PathVariable Integer bookId) {
+		return exemplaryMapper.listExemplary2listGetDTO(exemplaryService.findExemplariesByBookId(bookId));
+	}
 
 	@GetMapping("/{id}")
 	public Exemplary findById(@PathVariable Integer id) {
